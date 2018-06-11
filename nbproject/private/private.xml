@@ -3,9 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/home/jpgiandoso/NetBeansProjects/Grafos/src/grafos/GrafoAbstrato.java</file>
+            <file>file:/home/jpgiandoso/NetBeansProjects/Grafos/src/grafos/Leitor.java</file>
             <file>file:/home/jpgiandoso/NetBeansProjects/Grafos/src/grafos/Grafos.java</file>
-            <file>file:/home/jpgiandoso/NetBeansProjects/Grafos/src/grafos/DFS.java</file>
-            <file>file:/home/jpgiandoso/NetBeansProjects/Grafos/src/grafos/BFS.java</file>
+            <file>file:/home/jpgiandoso/NetBeansProjects/Grafos/tp2/v100.agm</file>
+            <file>file:/home/jpgiandoso/NetBeansProjects/Grafos/src/grafos/AGM_Kruskal.java</file>
+            <file>file:/home/jpgiandoso/NetBeansProjects/Grafos/src/grafos/Leitor_euclidiana.java</file>
         </group>
     </open-files>
 </project-private>

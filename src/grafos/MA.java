@@ -43,6 +43,7 @@ public final class MA extends GrafoAbstrato {
         this.m[origem][destino] = peso;
     }
 
+    
     @Override
     public double getPesoAresta(int origem, int destino) {
         return this.m[origem][destino];
@@ -101,21 +102,27 @@ public final class MA extends GrafoAbstrato {
         return l;
     }
 
-    @Override
-    public List<No> getNosAdjacentes(int vertice) {
-        List<No> l = new ArrayList();
-        for (int i = 0; i < m.length; i++) {
-            if (m[vertice][i] != Double.POSITIVE_INFINITY) {
-                No aux = new No(i, m[vertice][i]);
-                l.add(aux);
-            }
-        }
-        return l;
-    }
+//    @Override
+//    public List<No> getNosAdjacentes(int vertice) {
+//        List<No> l = new ArrayList();
+//        for (int i = 0; i < m.length; i++) {
+//            if (m[vertice][i] != Double.POSITIVE_INFINITY) {
+//                No aux = new No(i, m[vertice][i]);
+//                l.add(aux);
+//            }
+//        }
+//        return l;
+//    }
 
     @Override
     public int getNumVertices() {
         return this.m.length;
     }
 
+    @Override
+    public List<Aresta> getArestasOrdenadas() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    
 }

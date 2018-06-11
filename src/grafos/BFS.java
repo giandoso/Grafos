@@ -32,7 +32,7 @@ public class BFS {
         cor = new Cores[vertices];
         d = new int[vertices];
         pai = new int[vertices];
-        for(int u =0; u < this.vertices; u++){
+        for (int u = 0; u < this.vertices; u++) {
             cor[u] = BRANCO;
             d[u] = Integer.MAX_VALUE;
         }
@@ -69,9 +69,9 @@ public class BFS {
         System.out.println("");
     }
 
-    public void escreveCSV() throws IOException {
+    public void escreveCSV(String fileName) throws IOException {
         FileWriter file;
-        file = new FileWriter(new File("BFS.csv"));
+        file = new FileWriter(new File(fileName + ".csv"));
         file.write("Vertice, Distancia, Pai\n");
         file.flush();
         for (int i = 0; i < vertices; i++) {

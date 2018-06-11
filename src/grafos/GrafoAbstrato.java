@@ -38,6 +38,7 @@ public abstract class GrafoAbstrato {
         
     public abstract List<Integer> getAdjacentes (int vertice);
     
-    public abstract List<No> getNosAdjacentes (int vertice);
+    public abstract List<Aresta> getArestasOrdenadas();
+    //public abstract List<No> getNosAdjacentes (int vertice);
     
 }

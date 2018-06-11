@@ -6,6 +6,7 @@
 package grafos;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -15,7 +16,7 @@ import java.util.List;
  */
 public class LA extends GrafoAbstrato {
 
-    private List<No>[] v;
+    private List<Aresta>[] v;
 
     @Override
     public void criarGrafo(int numVertices) {
@@ -34,15 +35,15 @@ public class LA extends GrafoAbstrato {
     public void setPesoAresta(int origem, int destino, double peso) {
         for (int i = 0; i < v[origem].size(); i++) {
             if (v[origem].get(i).getDestino() == destino) {
-                No a = new No(destino,peso);
-                v[origem].set(i,a);
+                Aresta a = new Aresta(destino, peso);
+                v[origem].set(i, a);
             }
         }
     }
 
     @Override
     public void addAresta(int origem, int destino, double peso) {
-        No a = new No(destino, peso);
+        Aresta a = new Aresta(destino, peso);
         v[origem].add(a);
     }
 
@@ -77,6 +78,21 @@ public class LA extends GrafoAbstrato {
     }
 
     @Override
+    public List<Aresta> getArestasOrdenadas() {
+        List<Aresta> l = new LinkedList<>();
+        for (int i = 0; i < v.length; i++) {
+            for (int j = i+1; j < v[i].size(); j++) {
+                if (i != j) {
+                    Aresta a = new Aresta(i, v[i].get(j).getDestino(), v[i].get(j).getPeso());
+                    l.add(a);
+                }
+            }
+        }
+        Collections.sort(l);
+        return l;
+    }
+
+    @Override
     public boolean existeAresta(int origem, int destino) {
         for (int i = 0; i < v[origem].size(); i++) {
             if (v[origem].get(i).getDestino() == destino) {
@@ -95,9 +111,9 @@ public class LA extends GrafoAbstrato {
     @Override
     public void printarGrafo() {
         for (int i = 0; i < v.length; i++) {
-            System.out.print("|"+i+"|  ");
-            for (int j = 0; j < v[i].size() ; j++) {
-                System.out.print("-->  |"+v[i].get(j).getDestino()+"|\t  ");
+            System.out.print("|" + i + "|  ");
+            for (int j = 0; j < v[i].size(); j++) {
+                System.out.print("-->  |" + v[i].get(j).getDestino() + "|\t  ");
             }
             System.out.println("");
         }
@@ -112,15 +128,14 @@ public class LA extends GrafoAbstrato {
         return l;
     }
 
-    @Override
-    public List<No> getNosAdjacentes(int vertice) {
-        List<No> l = new ArrayList();
-        for (int i = 0; i < v[vertice].size(); i++) {
-            l.add(v[vertice].get(i));
-        }
-        return l;
-    }
-
+//    @Override
+//    public List<No> getNosAdjacentes(int vertice) {
+//        List<No> l = new ArrayList();
+//        for (int i = 0; i < v[vertice].size(); i++) {
+//            l.add(v[vertice].get(i));
+//        }
+//        return l;
+//    }
     @Override
     public int getNumVertices() {
         return v.length;
