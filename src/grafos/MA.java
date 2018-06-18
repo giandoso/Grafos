@@ -6,6 +6,8 @@
 package grafos;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -121,7 +123,17 @@ public final class MA extends GrafoAbstrato {
 
     @Override
     public List<Aresta> getArestasOrdenadas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<Aresta> l = new LinkedList<>();
+        for (int i = 0; i < m.length; i++) {
+            for (int j = 0; j < m.length; j++) {
+                if (m[i][j] != Double.POSITIVE_INFINITY) {
+                    Aresta a = new Aresta(i, j, m[i][j]);
+                    l.add(a);
+                }
+            }
+        }
+        Collections.sort(l);
+        return l;
     }
 
     

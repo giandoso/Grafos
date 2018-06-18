@@ -32,7 +32,6 @@ public class Leitor_euclidiana {
             }
             double[] aux = new double[2];//tamanho eh a qtd de colunas
             String[] s = line.split(",");
-//            System.out.println(s.length);
             //popula vet aux com conteudo do arquivo
             aux[0] = Double.parseDouble(s[0].trim());
             aux[1] = Double.parseDouble(s[1].trim());

@@ -127,15 +127,7 @@ public class LA extends GrafoAbstrato {
         }
         return l;
     }
-
-//    @Override
-//    public List<No> getNosAdjacentes(int vertice) {
-//        List<No> l = new ArrayList();
-//        for (int i = 0; i < v[vertice].size(); i++) {
-//            l.add(v[vertice].get(i));
-//        }
-//        return l;
-//    }
+    
     @Override
     public int getNumVertices() {
         return v.length;

@@ -111,22 +111,29 @@ public class Grafos {
             }
         }
         l = new Leitor_euclidiana(origem);
+        System.out.println("Entrada: " + origem);
         switch (pGrafo) {
             case 1:
                 System.out.print("MA, ");
                 grafo = l.buildGrafo_MA();
                 break;
             case 2:
-                System.out.println("LA, ");
+                System.out.print("LA, ");
                 grafo = l.buildGrafo_LA();
                 break;
         }
         switch (agm) {
             case "kruskal":
+                System.out.println("kruskal");
                 AGM_Kruskal kruskal = new AGM_Kruskal(grafo);
                 kruskal.getResults();
+                kruskal.escreveCSV(destino);
                 break;
             case "prim":
+                System.out.println("prim");
+                AGM_Prim prim = new AGM_Prim(grafo, 0);
+                prim.getResults();
+//                prim.escreveCSV(destino);
                 break;
         }
 

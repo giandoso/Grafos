@@ -5,6 +5,9 @@
  */
 package grafos;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -26,22 +29,28 @@ public class AGM_Kruskal {
             criarConjunto(i);
         }
         A = grafo.getArestasOrdenadas();
-//        IMPRIME A
-//        for (int j = 0; j < A.size(); j++) {
-//            System.out.print(A.get(j).getOrigem() + ",");
-//            System.out.print(A.get(j).getDestino() + ",") ;
-//            System.out.println(A.get(j).getPeso());
-//        }
         for (Aresta a : A) {
-            int v1 = a.getOrigem();
-            int v2 = a.getDestino();
+            //  O seguinte trecho é responsavel por encontrar os index
+            //de origem e destino dentro da lista de conjuntos c
             
-            System.out.println(v1 +","+ v2);
-            System.out.println(X.size());
-            if ((c.get(v1).equals(c.get(v2))) == false && X.size() < grafo.getNumVertices()) {
-                //encontrar uma maneira de substituir elementos caso ja esteja na lista
+            int origem = a.getOrigem();
+            int destino = a.getDestino();
+            int origemIndex = 0;
+            int destinoIndex = 0;
+            int cont=0;
+            for (ArrayList<Integer> l : c) {                
+                if(l.contains(origem)){
+                    origemIndex = cont;
+                }
+                if(l.contains(destino)){
+                    destinoIndex = cont;
+                }
+                cont++;
+            }
+            if (origemIndex != destinoIndex && X.size() < grafo.getNumVertices()) {
                 X.add(a);
-                aplicarUniao(v1, v2);
+                //aplica uniao nos dois index da lista de conjuntos
+                aplicarUniao(origemIndex, destinoIndex);
             }
         }
     }
@@ -54,30 +63,32 @@ public class AGM_Kruskal {
 
     private void aplicarUniao(int u, int v) {
         ArrayList<Integer> l = c.get(u);
-        System.out.println(c.get(u));
-        System.out.println(c.get(v));
-        for (Integer get : c.get(v)) {
-            if(l.contains(get) == false){
-                l.add(get);
+        for (Integer elementOfV : c.get(v)) {
+            if(l.contains(elementOfV) == false){
+                l.add(elementOfV);
             }
         }
         c.set(u, l);
-        c.set(v, l);
-        System.out.println(c.get(u));
-//        c.remove(v);
-        System.out.println(c.get(v));
+        c.remove(v);
     }
 
     public void getResults() {
         double totalPeso = 0;
         for (int i = 0; i < X.size(); i++) {
-            System.out.print(X.get(i).getOrigem() + "\t|");
-            System.out.print(X.get(i).getDestino() + "\t|");
-            System.out.print(X.get(i).getPeso() + "");
-            System.out.println("");
             totalPeso += X.get(i).getPeso();
         }
         System.out.println("Peso: " + totalPeso);
     }
 
+    public void escreveCSV(String fileName) throws IOException {
+        FileWriter file;
+        file = new FileWriter(new File(fileName + ".csv"));
+        file.write("Origem, Destino, Peso\n");
+        file.flush();
+        for (Aresta a : X) {
+            file.write(a.getOrigem()+","+a.getDestino()+","+a.getPeso()+"\n");
+            file.flush();            
+        }
+        System.out.println("Arquivo de saida '"+ fileName +".csv' criado com sucesso!");
+    }
 }
